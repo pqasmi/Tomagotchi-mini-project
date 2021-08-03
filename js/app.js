@@ -1,46 +1,82 @@
-class Player {
+class PlayerData {
     constructor (name, hunger, sleepiness, boredom, age) {
         this.name = name
-        this.hunger = hunger 
-        this.sleepiness = sleepiness
-        this.boredom = boredom
-        this.age = age
-    } 
+        this.hunger = 0
+        this.sleepiness = 0
+        this.boredom = 0
+        this.age = 0
+    }
 
+    reduceHunger () {
+        this.hunger--
+    }
+    addHunger () {
+        this.hunger++
+    }
+    age () {
+        setInterval(this.ageUp, 1000)
+        
+    }
+    ageUp () {
+        this.age++
+    }
+
+    playToma () {
+        let toma = document.querySelector("#pic")
+        let gameContainer = document.querySelector("#game")
+        gameContainer.style.background = "pink"
+        toma.src= "https://static.wikia.nocookie.net/tamagotchi/images/2/2b/Kuchipatchi_anime.PNG/revision/latest?cb=20110918052545"
+        let randomN = Math.floor(Math.random()*300)
+        toma.style.margin =  randomN + 'px'
+        
+      
+    }
+
+    sleepOffLights () {
+        let toma = document.querySelector("#pic")
+        let gameContainer = document.querySelector("#game")
+        gameContainer.style.background = "black"
+        toma.style.margin = "350px 267px 0 0"
+        toma.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8Tlo6VmDP84ofhHEEh3JOK7ERp4jK-5-mZg&usqp=CAU"
+    
+    }
 }
+
+let gotchi = new PlayerData("tomagotchi", 0, 0, 0, 0)
+
+console.log(gotchi.hunger)
+
+//Code to update userName when playing
 let updateName = () => {
     let name = document.querySelector("#userName")
-    insertName.innerText = name.value
-}
+    insertName.innerText = `Player: ${name.value}`}
 
-
+// Select h1 so when "Submit is clicked it replace the UserName with user input"
 let insertName = document.querySelector("#displayUserName")
 let submit = document.querySelector("#enterName")
 submit.addEventListener('click',updateName)
 
 
-
-function moveImage () {
-let toma = document.querySelector("#pic")
-let position = ["left", "right", "bottom", "top"]
-document.toma.style.background = postion[Math.floor(Math.random * position.length)] 
-console.log(postion[Math.floor(Math.random * position.length)] )
-}
-
 let play = document.querySelector("#play")
-play.addEventListener('click', moveImage)
+play.addEventListener('click', gotchi.playToma)
 
+let turnOff = document.querySelector("#sleepButton")
+turnOff.addEventListener('click', gotchi.sleepOffLights)
 
+let feedYourPet = document.querySelector("#feedPet")
+feedYourPet.addEventListener('click', gotchi.reduceHunger)
 
+let hungerId = document.querySelector("#hunger")
+hunger.innerText = `Hunger: ${gotchi.hunger}`
 
-// let toma = document.querySelector("#pic")
-// console.log(toma)
-// let playTom = document.querySelector("#play")
-// const moveCharacter = (event) => {
+let sleepId = document.querySelector("#sleep")
+sleep.innerText = `Sleep: ${gotchi.sleepiness}`
 
-//     document.toma.style.backgroundPosition = "top right"
-// }
+let boreId = document.querySelector("#bore")
+bore.innerText = `Boredom: ${gotchi.boredom}`
 
-// playTom.addEventListener('click', moveCharacter)
+let ageId = document.querySelector("#age")
+sleep.innerText = `Sleep: ${gotchi.age}`
+
 
 
