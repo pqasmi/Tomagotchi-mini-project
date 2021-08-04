@@ -1,6 +1,11 @@
 body {
-    background-color: aqua;
-}
+    background-color: purple;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center; 
+    
+  }
+
 
 #gameScreen {
     background-color:grey;
@@ -21,8 +26,8 @@ body {
     padding:0px 200px 0px 200px;
 }
 #scoreBoard {
-    margin: 10px 0 20px 0;
-    padding: 15px 0 0 0;
+    margin: 10px 0 10px 0;
+    padding: 10px 0 10px 0;
     background-color: black;
     text-align: left;
 }
@@ -30,8 +35,8 @@ body {
     background-color: black;
     color: white;
     display: inline;
-    padding: 0px 25px 0px 35px;
-    font-size: 18px;
+    padding: 0px 20px 0px 20px;
+    font-size: 21px;
     text-align: left;
 }
 
@@ -44,3 +49,7 @@ body {
     height: 45px;
     width: 45px;
 }
+
+/* #gameOver {
+    text-align: center;
+} */
