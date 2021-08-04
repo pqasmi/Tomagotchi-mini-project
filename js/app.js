@@ -16,7 +16,7 @@ document.getElementById("sleepButton").disabled = true
 document.getElementById("feedPet").disabled = true
 
 //Game Class
-class Game {
+class Toma {
     constructor(name){
         this.name = name
         this.hunger = 0
@@ -26,38 +26,57 @@ class Game {
     }
 }
 // Initiating the gotchi class
-const gotchi = new Game("Tomagotchi")    
+const gotchi = new Toma("Tomagotchi")    
 
-const ageUp = () => {
-    if (gotchi.age > 20 || gotchi.hunger >20) {
-        clearInterval(gotchi.age = 20)
-        // clearInterval(gotchi.hunger = 20)
+const gameStart = () => {
+    if (gotchi.age < 20) {  
+        if (gotchi.hunger > 10 || gotchi.sleepiness > 10){
+            gameLost()
+            clearInterval(gotchi.age = 20)
+            clearScores()
+        } else {
+            playToma()
+            gotchi.age++
+            ageId.innerText = `Age: ${gotchi.age}`
+        }
     } else {
-        gotchi.age++
-        ageId.innerText = `Age: ${gotchi.age}`
-        gameEnd()
-        playToma()}
-        
+        if (gotchi.hunger < 10 && gotchi.sleepiness < 10) {
+            gameWon()
+            clearInterval(gotchi.age = 20)
+            clearScores()
+        } else {
+            gameLost()
+            clearInterval(gotchi.age = 20)
+            clearScores()
+        }
     }
-
+}
 
 const playToma = () => {
-    if (gotchi.age <20) {
+    if (gotchi.age < 20 && gotchi.hunger < 10 && gotchi.sleepiness < 10) {
     gameContainer.style.background = "pink"
     toma.src= "https://static.wikia.nocookie.net/tamagotchi/images/2/2b/Kuchipatchi_anime.PNG/revision/latest?cb=20110918052545"
+    // const flexProperties = ["flex-start", "flex-end", "start", "end", "left", "right", "center"]
     let randomN = Math.floor(Math.random()*300)
     toma.style.margin =  randomN + 'px'  
+    // toma.style.flex.justifyContent = randomN
+    console.log(randomN)
     addHunger()
     sleepToma()
     havingFun()
-    }  
+    }  else {
+        clearInterval(gotchi.age = 20)
+        clearInterval(gotchi.hunger = 10)
+        clearInterval(gotchi.sleepiness = 10)
+    }
 }
+
 
 const sleepOffLights = () => {
     gameContainer.style.background = "black"
     toma.style.margin = "350px 267px 0 0"
     toma.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8Tlo6VmDP84ofhHEEh3JOK7ERp4jK-5-mZg&usqp=CAU"
-    sleepToma()
+    reduceSleepiness()
     getBored()
 }
 
@@ -71,7 +90,7 @@ const getBored = () => {
 const havingFun = () => {
     if (gotchi.boredom > 0) {
         gotchi.boredom--
-    boreId.innerText = `Boredom: ${gotchi.boredom}`
+        boreId.innerText = `Boredom: ${gotchi.boredom}`
     }
 }
 
@@ -80,7 +99,7 @@ const sleepToma = () => {
     sleepId.innerText = `Sleepiness: ${gotchi.sleepiness}`
 }
 
-const reduceSleep = () => {
+const reduceSleepiness = () => {
     if (gotchi.sleepiness > 1) {
         gotchi.sleepiness--
         sleepId.innerText = `Sleepiness: ${gotchi.sleepiness}`
@@ -99,35 +118,39 @@ const addHunger = () => {
         hungerId.innerText = `Hunger: ${gotchi.hunger}`   
     }
 
-const gameEnd = () => {
-    if (gotchi.hunger > 20 || gotchi.sleepiness > 20 || gotchi.age >20) {
-        clearInterval(gotchi.hunger = 20)
-        clearInterval(gotchi.sleepiness = 20)
+const gameWon = () => {
         let overGame = document.querySelector("#gameOver")
-        overGame.innerText = "GAME OVER"
+        overGame.innerText = "You Won!!!"
         overGame.style.color = "red"
-        overGame.style.fontSize = "100px"
+        overGame.style.fontSize = "50px"
         overGame.style.background = "black"
-        overGame.style.margin = "25px 50px 25px 50px "
-        gotchi.hunger = 20
-        gotchi.sleepiness = 20
-        gotchi.boredom = 20
-        gotchi.age = 20
-        hungerId.innerText = `Hunger: ${gotchi.hunger}` 
-        sleepId.innerText = `Sleepiness: ${gotchi.sleepiness}`
-        boreId.innerText = `Boredom: ${gotchi.boredom}`
-        ageId.innerText = `Age: ${gotchi.age}`
+        overGame.style.margin = "25px 50px 25px 50px"
         document.getElementById("play").disabled = true
         document.getElementById("sleepButton").disabled = true
         document.getElementById("feedPet").disabled = true
 }
+const gameLost = () => {
+        let overGame = document.querySelector("#gameOver")
+        overGame.innerText = "GAME LOST !!!"
+        overGame.style.color = "red"
+        overGame.style.fontSize = "50px"
+        overGame.style.background = "black"
+        overGame.style.margin = "25px 50px 25px 50px "
 }
+
 // Function clears the score when refresh button is hit
 const clearScores = () => {
     hungerId.innerText = `Hunger: ${0}` 
     sleepId.innerText = `Sleepiness: ${0}`
     boreId.innerText = `Boredom: ${0}`
     ageId.innerText = `Age: ${0}`
+    clearInterval(gotchi.age = 20)
+    let overGame = document.querySelector("#gameOver")
+    
+}
+
+const screenReLoad = () => {
+    window.location.reload()
 }
 
 //Code to update userName when playing
@@ -135,7 +158,7 @@ const clearScores = () => {
 const updateName = () => {
     let name = document.querySelector("#userName")
     insertName.innerText = `Player Name: ${name.value}`
-    setInterval (ageUp, 1000)  
+    setInterval (gameStart, 1000)  
     document.getElementById("play").disabled = false
     document.getElementById("sleepButton").disabled = false
     document.getElementById("feedPet").disabled = false
@@ -157,5 +180,5 @@ let feedYourPet = document.querySelector("#feedPet")
 feedYourPet.addEventListener('click', feeding)
 
 let clearScore = document.querySelector("#refresh")
-clearScore.addEventListener('click', clearScores)
+clearScore.addEventListener('click', screenReLoad)
 
