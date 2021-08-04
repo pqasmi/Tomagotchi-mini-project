@@ -1,5 +1,5 @@
 body {
-    background-color: purple;
+    background-color: blueviolet;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center; 
@@ -8,7 +8,7 @@ body {
 
 
 #gameScreen {
-    background-color:grey;
+    background-color:blue;
     height: 550px;
     width: 550px;
     margin: 0px 100px 0 100px;
@@ -17,7 +17,7 @@ body {
 #game {
     height: 400px;
     width: 450px;
-    background-color: pink;
+    background-color: black;
     margin: 0 auto;
     padding: 15px
 }
@@ -28,22 +28,22 @@ body {
 #scoreBoard {
     margin: 10px 0 10px 0;
     padding: 10px 0 10px 0;
-    background-color: black;
+    background-color: purple;
     text-align: left;
 }
 .score {
-    background-color: black;
+    background-color: purple;
     color: white;
     display: inline;
     padding: 0px 20px 0px 20px;
-    font-size: 21px;
+    font-size: 20px;
     text-align: left;
 }
 
 .controller {
     display: inline;
     padding: 10px;
-    margin: 20px 35px 0 25px
+    margin: 20px 25px 0 25px
 }
 #pic {
     height: 45px;
