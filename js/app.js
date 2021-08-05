@@ -65,7 +65,7 @@ gameStart = () => {
     playToma = () => {
         if (this.age < 20 && this.hunger < 10 && this.sleepiness < 10 && this.boredom < 10) {
         gameContainer.style.background = "pink"
-        toma.src= "https://static.wikia.nocookie.net/tamagotchi/images/2/2b/Kuchipatchi_anime.PNG/revision/latest?cb=20110918052545"
+        // toma.src= "https://static.wikia.nocookie.net/tamagotchi/images/2/2b/Kuchipatchi_anime.PNG/revision/latest?cb=20110918052545"
         // const flexProperties = ["flex-start", "flex-end", "start", "end", "left", "right", "center"]
         let randomN = Math.floor(Math.random()*300)
         toma.style.margin =  randomN + 'px'  
@@ -101,7 +101,7 @@ gameStart = () => {
     sleepOffLights = () => {
         gameContainer.style.background = "black"
         toma.style.margin = "350px 267px 0 0"
-        toma.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8Tlo6VmDP84ofhHEEh3JOK7ERp4jK-5-mZg&usqp=CAU"
+        toma.src = "image/images.jpeg"
         this.reduceSleepiness()
         this.getBored()
     }
