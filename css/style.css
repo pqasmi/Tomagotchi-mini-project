@@ -12,6 +12,7 @@ body {
     height: 550px;
     width: 550px;
     margin: 0px 100px 0 100px;
+    border-radius: 25px;
 }
 
 #game {
@@ -20,7 +21,7 @@ body {
     background-color: black;
     margin: 0 auto;
     padding: 15px;
-    display: flex
+    border-radius: 25px;
 }
 #userN {
     margin: 0px 100px 0 100px;
