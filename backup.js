@@ -81,23 +81,6 @@ gameStart = () => {
         }
     }
 
-    addHunger = () => {
-        this.hunger++
-        hungerId.innerText = `Hunger: ${this.hunger}`   
-    }
-
-    sleepToma = () => {
-        this.sleepiness++
-        sleepId.innerText = `Sleepiness: ${this.sleepiness}`
-    }
-        
-    havingFun = () => {
-        if (this.boredom > 0) {
-            this.boredom--
-            boreId.innerText = `Boredom: ${this.boredom}`
-        }
-    }
-
     sleepOffLights = () => {
         gameContainer.style.background = "black"
         toma.style.margin = "350px 267px 0 0"
@@ -106,20 +89,33 @@ gameStart = () => {
         this.getBored()
     }
 
+
     getBored = () => {
         if (this.boredom >= 0) {
         this.boredom++
         boreId.innerText = `Boredom: ${this.boredom}`
         }
     }
+    
+    havingFun = () => {
+        if (this.boredom > 0) {
+            this.boredom--
+            boreId.innerText = `Boredom: ${this.boredom}`
+        }
+    }
 
- 
+    sleepToma = () => {
+        this.sleepiness++
+        sleepId.innerText = `Sleepiness: ${this.sleepiness}`
+    }
+    
     reduceSleepiness = () => {
         if (this.sleepiness > 1) {
             this.sleepiness--
             sleepId.innerText = `Sleepiness: ${this.sleepiness}`
         }
     }
+
 
     feeding = () => {
         if (this.hunger > 0)  {
@@ -129,6 +125,10 @@ gameStart = () => {
         this.sleepToma()
     }
         
+    addHunger = () => {
+        this.hunger++
+        hungerId.innerText = `Hunger: ${this.hunger}`   
+    }
 
     gameWon = () => {
         let overGame = document.querySelector("#gameOver")
@@ -141,7 +141,7 @@ gameStart = () => {
         document.getElementById("sleepButton").disabled = true
         document.getElementById("feedPet").disabled = true
     }
-    gameLost () {
+    gameLost = () => {
         let overGame = document.querySelector("#gameOver")
         overGame.innerText = "GAME LOST !!!"
         overGame.style.color = "red"
@@ -157,6 +157,7 @@ gameStart = () => {
         boreId.innerText = `Boredom: ${0}`
         ageId.innerText = `Age: ${0}`
         clearInterval(this.age = 20)
+        let overGame = document.querySelector("#gameOver")
         
     }
 
@@ -168,13 +169,13 @@ gameStart = () => {
     updateName = () => {
         let name = document.querySelector("#userName")
         insertName.innerText = `Player Name: ${name.value}`
-        setInterval (gotchi.gameStart, 1000)  
+        setInterval (gotchi.gameStart, 2000)  
         document.getElementById("play").disabled = false
         document.getElementById("sleepButton").disabled = false
         document.getElementById("feedPet").disabled = false
     
     }
-   
+
 }
 // Initiating the gotchi class
 const gotchi = new Toma("Tomagotchi")    
