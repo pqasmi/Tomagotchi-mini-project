@@ -60,12 +60,10 @@ gameStart = () => {
         }
     }
 
-
-
     playToma = () => {
         if (this.age < 20 && this.hunger < 10 && this.sleepiness < 10 && this.boredom < 10) {
         gameContainer.style.background = "pink"
-        // toma.src= "https://static.wikia.nocookie.net/tamagotchi/images/2/2b/Kuchipatchi_anime.PNG/revision/latest?cb=20110918052545"
+        toma.src= "image/Kuchipatchi_anime.PNG.png"
         // const flexProperties = ["flex-start", "flex-end", "start", "end", "left", "right", "center"]
         let randomN = Math.floor(Math.random()*300)
         toma.style.margin =  randomN + 'px'  
