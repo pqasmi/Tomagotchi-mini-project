@@ -15,6 +15,16 @@ document.getElementById("play").disabled = true
 document.getElementById("sleepButton").disabled = true
 document.getElementById("feedPet").disabled = true
 
+// Initiating the gotchi class
+const gotchi = new Toma("Tomagotchi")    
+// Select h1 so when "Submit is clicked it replace the UserName with user input"
+
+let insertName = document.querySelector("#displayUserName")
+let submit = document.querySelector("#submit")
+submit.addEventListener('click',gotchi.updateName)
+
+
+
 //Game Class
 class Toma {
     constructor(name){
@@ -177,13 +187,7 @@ gameStart = () => {
     }
 
 }
-// Initiating the gotchi class
-const gotchi = new Toma("Tomagotchi")    
-// Select h1 so when "Submit is clicked it replace the UserName with user input"
 
-    let insertName = document.querySelector("#displayUserName")
-    let submit = document.querySelector("#submit")
-    submit.addEventListener('click',gotchi.updateName)
 
 // Adding event Listeners
 

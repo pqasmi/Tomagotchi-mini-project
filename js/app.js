@@ -1,21 +1,26 @@
-// Scoreboard
-let hungerId = document.querySelector("#hunger")
-hungerId.innerText = `Hunger: ${0}`
-let sleepId = document.querySelector("#sleep")
-sleepId.innerText = `Sleepiness: ${0}`
-let boreId = document.querySelector("#bore")
-boreId.innerText = `Boredom: ${0}`
-let ageId = document.querySelector("#age")
-ageId.innerText = `Age: ${0}`
-let toma = document.querySelector("#pic")
-let gameContainer = document.querySelector("#game")
+//Initial page settings:
+// 1: Scoreboard
 
-//Disabled game buttons
-document.getElementById("play").disabled = true
-document.getElementById("sleepButton").disabled = true
-document.getElementById("feedPet").disabled = true
+    let hungerId = document.querySelector("#hunger")
+    hungerId.innerText = `Hunger: ${0}`
+    let sleepId = document.querySelector("#sleep")
+    sleepId.innerText = `Sleepiness: ${0}`
+    let boreId = document.querySelector("#bore")
+    boreId.innerText = `Boredom: ${0}`
+    let ageId = document.querySelector("#age")
+    ageId.innerText = `Age: ${0}`
+    let toma = document.querySelector("#pic")
+    let gameContainer = document.querySelector("#game")
 
-//Game Class
+// 2: Disabled game buttons
+
+    document.getElementById("play").disabled = true
+    document.getElementById("sleepButton").disabled = true
+    document.getElementById("feedPet").disabled = true
+
+
+
+//Toma Class
 class Toma {
     constructor(name){
         this.name = name
@@ -27,12 +32,12 @@ class Toma {
 
 gameStart = () => {
         if (this.age < 20) {  
-            if (this.hunger > 10 || this.sleepiness > 10){
+            if (this.hunger > 10 || this.sleepiness > 10 || this.boredom >10 ){
                 this.gameLost()
-                clearInterval(this.age = 20)
+                clearInterval(this.hunger = 11)
                 this.clearScores()
             } else {
-                this.playToma()
+                this.moveToma()
                 this.age++
                 ageId.innerText = `Age: ${this.age}`
                 if(this.age > 5) {
@@ -48,35 +53,42 @@ gameStart = () => {
                 }
             }
         } else {
-            if (this.hunger < 10 && this.sleepiness < 10) {
+            if (this.hunger < 10 && this.sleepiness < 10 && this.boredom < 10) {
                 this.gameWon()
-                clearInterval(this.age = 20)
-                this.clearScores()
+                clearInterval(this.hunger = 0)
+                this.clearScores()  
             } else {
                 this.gameLost()
-                clearInterval(this.age = 20)
+                clearInterval(this.age = 0)
                 this.clearScores()
+            
             }
         }
     }
 
-    playToma = () => {
+    moveToma = () => {
         if (this.age < 20 && this.hunger < 10 && this.sleepiness < 10 && this.boredom < 10) {
-        gameContainer.style.background = "pink"
+        gameContainer.style.background = "yellow"
         toma.src= "image/Kuchipatchi_anime.PNG.png"
         // const flexProperties = ["flex-start", "flex-end", "start", "end", "left", "right", "center"]
         let randomN = Math.floor(Math.random()*300)
         toma.style.margin =  randomN + 'px'  
         // toma.style.flex.justifyContent = randomN
         console.log(randomN)
-        this.addHunger()
-        this.sleepToma()
-        this.havingFun()
+        // this.addHunger()
+        // this.sleepToma()
+        // this.havingFun()
         }  else {
             clearInterval(this.age = 20)
             clearInterval(this.hunger = 10)
             clearInterval(this.sleepiness = 10)
         }
+    }
+
+    playToma = () => {
+        this.addHunger()
+        this.sleepToma()
+        this.havingFun()
     }
 
     addHunger = () => {
@@ -129,23 +141,26 @@ gameStart = () => {
         
 
     gameWon = () => {
-        let overGame = document.querySelector("#gameOver")
-        overGame.innerText = "You Won!!!"
-        overGame.style.color = "red"
-        overGame.style.fontSize = "50px"
-        overGame.style.background = "black"
-        overGame.style.margin = "25px 50px 25px 50px"
+        let insertName = document.querySelector("#displayUserName")
+        insertName.innerText = `Game WON!!!`
+        insertName.style.color = "red"
+        insertName.style.fontSize = "50px"
+        // let overGame = document.querySelector("#gameOver")
+        // overGame.innerText = "You Won!!!"
+        // overGame.style.color = "red"
+        // overGame.style.fontSize = "50px"
+        // overGame.style.background = "black"
+        // overGame.style.margin = "25px 50px 25px 50px"
         document.getElementById("play").disabled = true
         document.getElementById("sleepButton").disabled = true
         document.getElementById("feedPet").disabled = true
     }
     gameLost () {
-        let overGame = document.querySelector("#gameOver")
-        overGame.innerText = "GAME LOST !!!"
-        overGame.style.color = "red"
-        overGame.style.fontSize = "50px"
-        overGame.style.background = "black"
-        overGame.style.margin = "25px 50px 25px 50px "
+        let insertName = document.querySelector("#displayUserName")
+        insertName.innerText = `Game Lost!!!`
+        insertName.style.color = "red"
+        insertName.style.fontSize = "50px"
+
     }
 
 // Function clears the score when refresh button is hit
@@ -154,7 +169,6 @@ gameStart = () => {
         sleepId.innerText = `Sleepiness: ${0}`
         boreId.innerText = `Boredom: ${0}`
         ageId.innerText = `Age: ${0}`
-        clearInterval(this.age = 20)
         
     }
 
@@ -174,9 +188,11 @@ gameStart = () => {
     }
    
 }
-// Initiating the gotchi class
-const gotchi = new Toma("Tomagotchi")    
+// Instantiating the gotchi class
+    const gotchi = new Toma("Tomagotchi")    
 // Select h1 so when "Submit is clicked it replace the UserName with user input"
+
+// 
 
     let insertName = document.querySelector("#displayUserName")
     let submit = document.querySelector("#submit")
